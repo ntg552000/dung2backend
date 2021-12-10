@@ -12,19 +12,21 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.Entity;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Set;
 
 @Data
-@Entity
 @AllArgsConstructor
 @NoArgsConstructor
-public class CustomUserDetail implements UserDetails {
+public class CustomUserDetails implements UserDetails {
+    private Set<GrantedAuthority> authorities;
+
     @Autowired
     User user;
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.singleton(new SimpleGrantedAuthority("ROLE_USER"));
-    }
+//    @Override
+//    public Collection<? extends GrantedAuthority> getAuthorities() {
+//        return Collections.singleton(new SimpleGrantedAuthority("ROLE_USER"));
+//    }
 
     @Override
     public String getPassword() {
